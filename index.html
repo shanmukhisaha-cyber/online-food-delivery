@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie - Online Food Delivery</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= SIGNUP ================= -->
+
+<section id="signupPage" class="auth-page">
+
+    <div class="auth-box">
+
+        <div class="logo">🍴 <span>Foodie</span></div>
+
+        <h2>Create Account</h2>
+
+        <p>Create your account to order food</p>
+
+        <input
+            type="text"
+            id="signupName"
+            placeholder="Enter your name"
+        >
+
+        <input
+            type="email"
+            id="signupEmail"
+            placeholder="Enter your email"
+        >
+
+        <input
+            type="text"
+            id="signupPhone"
+            placeholder="Enter mobile number"
+        >
+
+        <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create password"
+        >
+
+        <button onclick="signup()">
+            Sign Up
+        </button>
+
+        <p>
+            Already have an account?
+            <span class="link" onclick="showLogin()">
+                Login
+            </span>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginPage" class="auth-page hidden">
+
+    <div class="auth-box">
+
+        <div class="logo">🍴 <span>Foodie</span></div>
+
+        <h2>Welcome Back</h2>
+
+        <p>Login to order your favourite food</p>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter email"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p>
+            Don't have an account?
+            <span class="link" onclick="showSignup()">
+                Sign Up
+            </span>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="homePage" class="hidden">
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="nav-logo">
+            🍴 <b>Foodie</b>
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for food..."
+                oninput="searchFood()"
+            >
+
+            <span>🔍</span>
+
+        </div>
+
+        <div class="nav-links">
+
+            <span onclick="goHome()">
+                🏠 Home
+            </span>
+
+            <span onclick="showCart()">
+                🛒 Cart
+                <b id="cartCount">0</b>
+            </span>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <h1>
+                Welcome <span id="userName"></span> 🍴
+            </h1>
+
+            <p>
+                Order delicious food from your favourite restaurants
+            </p>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+
+        <h2 class="section-title">
+            What's on your mind?
+        </h2>
+
+        <div class="categories">
+
+            <div
+                class="category-card"
+                onclick="showCategory('pizza')"
+            >
+                <span>🍕</span>
+                <b>Pizza</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('burger')"
+            >
+                <span>🍔</span>
+                <b>Burgers</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('chicken')"
+            >
+                <span>🍗</span>
+                <b>Chicken</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('biryani')"
+            >
+                <span>🍚</span>
+                <b>Biryani</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('noodles')"
+            >
+                <span>🍜</span>
+                <b>Noodles</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('dessert')"
+            >
+                <span>🍰</span>
+                <b>Desserts</b>
+            </div>
+
+            <div
+                class="category-card"
+                onclick="showCategory('drinks')"
+            >
+                <span>🥤</span>
+                <b>Drinks</b>
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY MENU -->
+
+        <section
+            id="categoryMenu"
+            class="category-menu hidden"
+        >
+
+            <div class="menu-heading">
+
+                <h2 id="categoryTitle">
+                    Food Menu
+                </h2>
+
+                <button onclick="closeCategory()">
+                    ✕ Close
+                </button>
+
+            </div>
+
+            <div
+                id="categoryItems"
+                class="food-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- POPULAR RESTAURANTS -->
+
+        <h2 class="section-title">
+            Popular Restaurants
+        </h2>
+
+        <div class="restaurants">
+
+            <div class="restaurant">
+                <div>🍽️</div>
+                <h3>Spice Kitchen</h3>
+                <p>⭐ 4.5</p>
+                <small>Biryani • North Indian</small>
+            </div>
+
+            <div class="restaurant">
+                <div>🍔</div>
+                <h3>Burger House</h3>
+                <p>⭐ 4.3</p>
+                <small>Burgers • Fast Food</small>
+            </div>
+
+            <div class="restaurant">
+                <div>🍕</div>
+                <h3>Pizza Corner</h3>
+                <p>⭐ 4.6</p>
+                <small>Pizza • Italian</small>
+            </div>
+
+            <div class="restaurant">
+                <div>🍗</div>
+                <h3>Chicken Point</h3>
+                <p>⭐ 4.4</p>
+                <small>Chicken • Kebabs</small>
+            </div>
+
+        </div>
+
+
+        <!-- POPULAR FOOD -->
+
+        <h2 class="section-title">
+            Popular Food Items
+        </h2>
+
+        <div
+            id="foodContainer"
+            class="food-grid"
+        ></div>
+
+
+        <!-- CART -->
+
+        <section
+            id="cartSection"
+            class="cart-section hidden"
+        >
+
+            <h2>🛒 Your Cart</h2>
+
+            <div id="cartItems"></div>
+
+            <div class="cart-total">
+
+                Total:
+                ₹<span id="cartTotal">0</span>
+
+            </div>
+
+            <button
+                class="main-btn"
+                onclick="placeOrder()"
+            >
+                Place Order
+            </button>
+
+        </section>
+
+
+        <!-- CHECKOUT -->
+
+        <section
+            id="checkoutSection"
+            class="checkout-section hidden"
+        >
+
+            <h2>📍 Delivery Details</h2>
+
+            <div class="checkout-box">
+
+                <h3>Delivery Address</h3>
+
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter your full address"
+                >
+
+                <input
+                    type="text"
+                    id="city"
+                    placeholder="Enter city"
+                >
+
+                <input
+                    type="text"
+                    id="pincode"
+                    placeholder="Enter PIN code"
+                >
+
+            </div>
+
+
+            <div class="checkout-box">
+
+                <h3>💳 Payment Method</h3>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Cash on Delivery"
+                        checked
+                    >
+                    💵 Cash on Delivery
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="UPI"
+                    >
+                    📱 UPI
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Card"
+                    >
+                    💳 Debit / Credit Card
+                </label>
+
+            </div>
+
+
+            <button
+                class="main-btn"
+                onclick="confirmOrder()"
+            >
+                ✅ Confirm Order
+            </button>
+
+        </section>
+
+
+        <!-- DELIVERY PARTNER -->
+
+        <section
+            id="deliverySection"
+            class="delivery-section hidden"
+        >
+
+            <h2>🚴 Delivery Partner</h2>
+
+            <div class="delivery-card">
+
+                <div class="delivery-avatar">
+                    👨‍🦱
+                </div>
+
+                <div>
+
+                    <h3>Rahul Kumar</h3>
+
+                    <p>⭐ 4.8 Rating</p>
+
+                    <p>📞 98765 43210</p>
+
+                    <p>🛵 Bike</p>
+
+                    <p>🚲 Vehicle No: AP 39 AB 1234</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-status">
+
+                <h3>📦 Order Status</h3>
+
+                <div class="status-line">
+
+                    <div class="status active">
+                        <span>✓</span>
+                        <p>Order Confirmed</p>
+                    </div>
+
+                    <div class="status active">
+                        <span>✓</span>
+                        <p>Food Preparing</p>
+                    </div>
+
+                    <div class="status active">
+                        <span>🚴</span>
+                        <p>Out for Delivery</p>
+                    </div>
+
+                    <div class="status">
+                        <span>🏠</span>
+                        <p>Delivered</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="delivery-time">
+
+                <h3>⏱️ Estimated Delivery</h3>
+
+                <p>25 - 30 minutes</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h3>🍴 Foodie</h3>
+
+        <p>
+            Online Food Delivery System
+        </p>
+
+        <p>
+            © 2026 Foodie. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
